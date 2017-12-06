@@ -1,5 +1,8 @@
 console.log("hi this isn't completely broken");
 
+users = new Set(["Brad Pitt"])
+restricted_items = new Set(["gun", "bottle"]);
+
 function send_file_name(file_name, classification_type) {
     // classification_type is face ^ object
     url = "http://127.0.0.1:5000"
@@ -16,20 +19,21 @@ function send_file_name(file_name, classification_type) {
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             response_json = xhr.responseText;
-            var identity = extract_identity(response_json, classification_type);
+            var identity = classify(response_json, classification_type);
             console.log(identity);
         }
     }
 }
 
 
-function extract_identity(json_text, classification_type) {
+function classify(json_text, classification_type) {
     var obj = JSON.parse(json_text);
     if (classification_type == "face") {
         image = obj.images[0];
         face = image.faces[0];
         identity = face.identity;
         name = identity.name;
+        check_in_user(name);
         return name;
     } else if (classification_type == "object") {
         var arr = [];
@@ -42,8 +46,38 @@ function extract_identity(json_text, classification_type) {
                 arr.push(curr_class.class);
             }
         }
+        alert_user_restricted_items(arr);
         return arr;
     } else {
         return false;
+    }
+}
+
+
+function alert_user_restricted_items(arr) {
+    document.body.innerHTML = "";
+    var ret = [];
+    for (var i = 0; i < arr.length; i++) {
+        if (restricted_items.has(arr[i])) {
+            ret.push(arr[i]);
+        }
+    }
+
+    if (ret.length == 0) {
+        document.body.innerHTML += "All clear!";
+    } else {
+        document.body.innerHTML += "Please remove the following restricted items:<br>";
+        for (var i = 0; i < ret.length; i++) {
+            document.body.innerHTML += ret[i] + "<br>";
+        }
+    }
+}
+
+function check_in_user(name) {
+    document.body.innerHTML = "";
+    if (users.has(name)) {
+        document.body.innerHTML += "Welcome, " + name + "!";
+    } else {
+        document.body.innerHTML += "We weren't expecting you, " + name;
     }
 }
