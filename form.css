@@ -1,0 +1,78 @@
+/*// imports*/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+*, .buttons {
+    text-align: justify;
+    font-family: Open Sans, sans-serif;
+}
+
+.heading {
+    font-size: 1.4vw;
+    font-weight: 500;
+
+}
+
+/*// variables */
+$color-brand: #2ecc71;
+$color-secondary: #fff;
+$color-error: #e74c3c;
+
+/*// Resets*/
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+ 	-moz-background-clip: padding;
+ 	-webkit-background-clip: padding-box;
+ 	background-clip: padding-box; /* prevents bg color from leaking outside the border */
+	display: inline-block;
+	border: 0;
+	-webkit-appearance: button; /* for input */
+    -webkit-user-select: none; /* for button */
+       -moz-user-select: none;
+        -ms-user-select: none;
+}
+
+
+/*// main styles*/
+body {
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+}
+.cancelBtn, .submitBtn {
+  background: $color-brand;
+  color: $color-secondary;
+  font-size: 20px;
+  text-align: center;
+  padding: 20px 40px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/*// upload image styles*/
+.formInfo {  
+  padding-top: 40px;
+}
+.uploadBtn {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+
+  input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+} 
+/*// .upload-image*/
+
+.uploadConfirm {
+  display: none;
+}
+.cancelBtn {
+  background: $color-error;
+}

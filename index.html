@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+    <link rel="stylesheet" type="text/css" href="form.css">     
+    </head>
+    <body>
+        
+        <form id="formInfo">
+            <p class="heading">Enter the following information to save your preference: </p><br>
+            First Name: <input class="set" type="text" name="firstName"><br>
+            Last Name: <input class="set" type="text" name="lastName"><br>
+            Security Type: <input class="set" type="text" name="security"><br>
+            Flight Confirmation Number: <input type="text" name="flightConfirm"><br>
+            Rewards Number: <input class="set" type="text" name="rewardsNumber"><br><br>
+            
+            Upload your picture for verification:<br>
+            <p id="imgUploadFilepath"></p>
+  
+          <div class="uploadBtn">
+<!--            <span>Upload your photo</span>-->
+            <input class="set" class="buttons" class="uploadInput" type="file">
+          </div>
+
+          <div class="uploadConfirm">
+            <input class="buttons" class="cancelBtn" type="reset" value="Cancel">
+            <input class="buttons" class="submitBtn" type="submit" value="Ok">
+          </div>
+            
+            <br>
+        <input class="buttons" type="button" type="submit" value="Submit" onclick="clear();">
+  
+        </form>
+        
+    </body>
+    
+   
+    <script src="./test.js"></script>
+    
+</html>
