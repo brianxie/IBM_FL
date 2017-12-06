@@ -17,8 +17,15 @@ def root():
     images_file = request.data.decode('utf-8')
     json_dict = json.loads(images_file)
     file = json_dict["images_file"]
-    print(file)
-    json_response = json.dumps(visual_recognition.detect_faces(images_url=file), indent=2)
+    class_type = json_dict["classification_type"];
+    print("FILE:", file)
+    print("CLASS_TYPE:", class_type)
+    if class_type == "face":
+        json_response = json.dumps(visual_recognition.detect_faces(images_url=file), indent=2)
+    elif class_type == "object":
+        json_response = json.dumps(visual_recognition.classify(images_url=file), indent=2)
+    else:
+        assert False
     print(json_response)
     return json_response
 
